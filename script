@@ -1,0 +1,214 @@
+--[[
+Game : https://www.roblox.com/games/3072491551
+Coded by : Keathunsar : https://github.com/dady172172/Roblox-Cheats
+Gui made by : FungBert : https://v3rmillion.net/member.php?action=profile&uid=1078854
+Go vouch release thread : https://v3rmillion.net/showthread.php?tid=1023761
+]]--
+
+---- variables ----
+kVars = {} -- Table for all the variables
+kVars.WindowName = "Doge Simulator GUI"
+kVars.lp = game:GetService("Players").LocalPlayer
+kVars.VirtualUser = game:GetService('VirtualUser')
+
+---- if re-injecting script, we wait for the old one to close and turn all option off
+if game:GetService("CoreGui"):FindFirstChild(kVars.WindowName) then
+    wait(.15)
+end
+
+---- antiAFK ----
+kVars.AntiAfk = game:service('Players').LocalPlayer.Idled:connect(function()
+    kVars.VirtualUser:CaptureController()
+    kVars.VirtualUser:ClickButton2(Vector2.new())
+end)
+
+---- GUI Library ----
+local UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/V1ca2q9s"))()
+
+---- pages ----
+local MainUI = UILibrary.Load(kVars.WindowName)
+local pageFarm = MainUI.AddPage("Farm")
+local pageTeleport = MainUI.AddPage("Teleport")
+local pageCharacter = MainUI.AddPage("Player")
+local pageMisc = MainUI.AddPage("Misc")
+local pageCredits = MainUI.AddPage("Credits")
+
+---------- Farm Page ----------
+----  ----
+kVars.toggleBark = pageFarm.AddToggle("Barks", false, function(bool)
+    kVars.boolBark = bool
+    if bool then fBark() end
+end)
+
+function fBark()
+    spawn(function()
+        while kVars.boolBark do
+            wait()
+            if kVars.lp.Character:FindFirstChildWhichIsA("Tool") then
+                kVars.VirtualUser:CaptureController()
+                kVars.VirtualUser:ClickButton1(Vector2.new())
+            else
+                keypress(0x31)
+            end
+        end
+    end)
+end
+
+kVars.toggleRebirth = pageFarm.AddToggle("Rebirth", false, function(bool)
+    kVars.boolRebirth = bool
+    if bool then fRebirth() end
+end)
+
+function fRebirth()
+    spawn(function()
+        while kVars.boolRebirth do
+            wait()
+            if (100000 * (2 + kVars.lp.leaderstats.Rebirths.Value)) <= kVars.lp.leaderstats.Barks.Value and kVars.lp.Character:FindFirstChild("Humanoid") then
+                game:GetService("ReplicatedStorage").RebirthEvent:FireServer()
+            end
+        end
+    end)
+end
+
+kVars.CurrentZone = nil
+for i,v in pairs(game:GetService("Players").LocalPlayer.stats:GetChildren()) do
+    if v.ClassName == "BoolValue" and v.Name ~= "Banned" and v.Value == true then
+        kVars.CurrentZone = v.Name
+    end
+end
+
+kVars.toggleCoinsZone1 = pageFarm.AddToggle("Coins Zone1", false, function(bool)
+    kVars.boolCoinsZone1 = bool
+    if bool then fCoinsZone1() end
+end)
+
+function fCoinsZone1()
+    spawn(function()
+        while kVars.boolCoinsZone1 do
+            wait()
+            for i,v in pairs(game:GetService("Workspace").Coins.Coin1:GetChildren()) do
+                v.CanCollide = false
+                if v.Transparency == 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    repeat
+                        wait()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                    until v.Transparency == 1 or kVars.boolCoinsZone1 == false
+                    if kVars.boolCoinsZone1 == false then return end
+                end
+            end   
+        end
+    end)
+end
+
+kVars.toggleCoinsZone2 = pageFarm.AddToggle("Coins Zone2", false, function(bool)
+    kVars.boolCoinsZone2 = bool
+    if bool then fCoinsZone2() end
+end)
+
+function fCoinsZone2()
+    spawn(function()
+        while kVars.boolCoinsZone2 do
+            wait()
+            for i,v in pairs(game:GetService("Workspace").Coins.Coin2:GetChildren()) do
+                v.CanCollide = false
+                if v.Transparency == 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    repeat
+                        wait()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                    until v.Transparency == 1 or kVars.boolCoinsZone2 == false
+                    if kVars.boolCoinsZone2 == false then return end
+                end
+            end
+        end
+    end)
+end
+
+kVars.toggleCoinsZone3 = pageFarm.AddToggle("Coins Zone3", false, function(bool)
+    kVars.boolCoinsZone3 = bool
+    if bool then fCoinsZone3() end
+end)
+
+function fCoinsZone3()
+    spawn(function()
+        while kVars.boolCoinsZone3 do
+            wait()
+            for i,v in pairs(game:GetService("Workspace").Coins.Coin3:GetChildren()) do
+                v.CanCollide = false
+                if v.Transparency == 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    repeat
+                        wait()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                    until v.Transparency == 1 or kVars.boolCoinsZone3 == false
+                    if kVars.boolCoinsZone3 == false then return end
+                end
+            end
+        end
+    end)
+end
+
+kVars.toggleCoinsZone4 = pageFarm.AddToggle("Coins Zone4", false, function(bool)
+    kVars.boolCoinsZone4 = bool
+    if bool then fCoinsZone4() end
+end)
+
+function fCoinsZone4()
+    spawn(function()
+        while kVars.boolCoinsZone4 do
+            wait()
+            for i,v in pairs(game:GetService("Workspace").Coins.Coin4:GetChildren()) do
+                v.CanCollide = false
+                if v.Transparency == 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    repeat
+                        wait()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                    until v.Transparency == 1 or kVars.boolCoinsZone4 == false
+                    if kVars.boolCoinsZone4 == false then return end
+                end
+            end
+            for i,v in pairs(game:GetService("Workspace").Coins.Chest1:GetChildren()) do
+                v.CanCollide = false
+                if v.Transparency == 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    repeat
+                        wait()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                    until v.Transparency == 1 or kVars.boolCoinsZone4 == false
+                    if kVars.boolCoinsZone4 == false then return end
+                end
+            end
+        end
+    end)
+end
+
+kVars.toggleCoinsZone5 = pageFarm.AddToggle("Coins Zone5", false, function(bool)
+    kVars.boolCoinsZone5 = bool
+    if bool then fCoinsZone5() end
+end)
+
+function fCoinsZone5()
+    spawn(function()
+        while kVars.boolCoinsZone5 do
+            wait()
+            for i,v in pairs(game:GetService("Workspace").Coins.Chest1F:GetChildren()) do
+                v.CanCollide = false
+                if v.Transparency == 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    repeat
+                        wait()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                    until v.Transparency == 1 or kVars.boolCoinsZone5 == false
+                    if kVars.boolCoinsZone5 == false then return end
+                end
+            end
+        end
+    end)
+end
+
+kVars.toggleCoinsZone6 = pageFarm.AddToggle("Coins Zone6", false, function(bool)
+    kVars.boolCoinsZone6 = bool
+    if bool then fCoinsZone6() end
+end)
+
+function fCoinsZone6()
+    spawn(function()
+        while kVars.boolCoinsZone6 do
+            wait()
+            for i,v in pairs(game:GetService("Workspace").Coins.Chest2:GetChildren()) do
